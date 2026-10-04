@@ -18,8 +18,8 @@ prevent a developer from bypassing the cooperative gate.
 Python 3.11 is the verified runtime. No cloud account or email provider is needed:
 
 ```bash
-git clone https://github.com/sanyAlam/daai-console-open-source.git
-cd daai-console-open-source
+git clone https://github.com/sanyAlam/daai.git
+cd daai
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e "apps/api[dev]" -e "packages/daai-python[dev]"
