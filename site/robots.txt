@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /signup
+Disallow: /api/
+Disallow: /v1/
+Disallow: /approve/
+Disallow: /reject/
+Sitemap: https://daaihq.com/sitemap.xml

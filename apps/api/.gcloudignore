@@ -1,0 +1,10 @@
+.git
+.gitignore
+__pycache__/
+**/__pycache__/
+*.pyc
+*.egg-info/
+.env
+.env.*
+tests/
+scripts/.staging_e2e_state.json

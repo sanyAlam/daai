@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: daai-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: daai
+      POSTGRES_PASSWORD: daai
+      POSTGRES_DB: daai_console
+    ports:
+      - "5433:5432"
+    volumes:
+      - daai_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U daai -d daai_console"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  daai_postgres_data:

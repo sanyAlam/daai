@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #0b0f0d;
+  --canvas: #101613;
+  --panel: #151c18;
+  --panel-hover: #1a231f;
+  --border: #28322d;
+  --border-strong: #3a463f;
+  --text: #ededed;
+  --muted: #8b949e;
+  --subtle: #6e7681;
+  --accent: #3ecf8e;
+  --success: #3ecf8e;
+  --warning: #f2b84b;
+  --danger: #f87171;
+  --info: #7dd3fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Avenir Next', 'IBM Plex Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family:
+    'SFMono-Regular', 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+::selection {
+  background: rgba(62, 207, 142, 0.26);
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--subtle);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.daai-diagram-flow .react-flow__controls {
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+}
+
+.daai-diagram-flow .react-flow__controls-button {
+  width: 34px;
+  height: 34px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+}
+
+.daai-diagram-flow .react-flow__controls-button:hover {
+  background: var(--panel-hover);
+}
+
+.daai-diagram-flow .react-flow__controls-button svg {
+  fill: var(--text);
+}
+
+@keyframes landing-glow-drift {
+  0%,
+  100% {
+    transform: translate3d(-2%, 0, 0) scale(1);
+    opacity: 0.78;
+  }
+
+  50% {
+    transform: translate3d(2%, 8px, 0) scale(1.04);
+    opacity: 1;
+  }
+}
+
+.landing-glow {
+  animation: landing-glow-drift 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-glow {
+    animation: none;
+  }
+}

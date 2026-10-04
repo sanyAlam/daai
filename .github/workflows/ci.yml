@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  api-tests:
+    name: API tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: apps/api/pyproject.toml
+
+      - name: Install API dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Verify isolated workflow
+        run: |
+          python -m pip install -e "../../packages/daai-python[dev]"
+          python ../../examples/local_demo.py
+
+      - name: Run API tests
+        run: python -m pytest
+
+  sdk-tests:
+    name: Python SDK tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/daai-python
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: packages/daai-python/pyproject.toml
+
+      - name: Install SDK dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run SDK tests
+        run: python -m pytest
+
+  dashboard-build:
+    name: Dashboard build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/dashboard
+    env:
+      DAAI_API_BASE_URL: http://127.0.0.1:8000
+      DAAI_DASHBOARD_BASE_URL: http://127.0.0.1:3000
+      DAAI_SUPABASE_URL: https://example.supabase.co
+      DAAI_SUPABASE_ANON_KEY: sb_publishable_test_key
+      NEXT_PUBLIC_DAAI_SUPABASE_URL: https://example.supabase.co
+      NEXT_PUBLIC_DAAI_SUPABASE_ANON_KEY: sb_publishable_test_key
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: apps/dashboard/package-lock.json
+
+      - name: Install dashboard dependencies
+        run: npm ci
+
+      - name: Build dashboard
+        run: npm run build

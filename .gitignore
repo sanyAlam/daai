@@ -1,0 +1,32 @@
+.agents/
+.tools/
+
+# Local environment secrets
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.local.example
+.env
+.env.local
+.env.*.local
+apps/*/.env.local
+apps/*/.env.*.local
+apps/api/.env.cloudrun.staging.yaml
+apps/dashboard/.env.local
+apps/api/scripts/.staging_e2e_state.json
+
+# Python artifacts
+**/__pycache__/
+*.egg-info/
+**/.pytest_cache/
+*.sqlite3
+*.db
+.DS_Store
+
+# Next.js artifacts
+**/node_modules/
+apps/dashboard/.next/
+apps/dashboard/tsconfig.tsbuildinfo
+
+# Local skills metadata
+skills-lock.json

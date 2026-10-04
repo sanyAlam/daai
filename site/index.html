@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DAAI Console | Sany Alam</title>
+  <meta name="description" content="Sany Alam's open-source Python agent governance project: deterministic policy, human approvals, and audit receipts. Inspect the code and run a safe local demo.">
+  <link rel="canonical" href="https://daaihq.com/">
+  <meta property="og:title" content="DAAI Console | Sany Alam">
+  <meta property="og:description" content="Open-source engineering portfolio. A cooperative governance layer for registered Python agent actions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daaihq.com/">
+  <meta property="og:image" content="https://daaihq.com/assets/demo-output.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <nav aria-label="Main navigation" class="wrap">
+      <a class="brand" href="/">DAAI<span>Console</span></a>
+      <div class="nav-links"><a href="#workflow">Workflow</a><a href="#engineering">Engineering</a><a href="https://github.com/sanyAlam/daai-console-open-source">View source <span aria-hidden="true">&#8599;</span></a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="intro wrap" aria-labelledby="project-title">
+      <div class="project-meta"><span class="status">Open-source portfolio</span><span>Sany Alam / Independent project / 2026</span></div>
+      <h1 id="project-title">DAAI Console</h1>
+      <p class="lead">A cooperative governance layer for registered Python agent actions.</p>
+      <p class="intro-copy">Before an automation takes a consequential action, ask for permission. Evaluate a deterministic policy, pause for human approval, and record what happened. The developer's application owns the actual execution.</p>
+      <div class="actions"><a class="primary" href="https://github.com/sanyAlam/daai-console-open-source">View source <span aria-hidden="true">&#8599;</span></a><a href="https://github.com/sanyAlam/daai-console-open-source/blob/main/docs/case-study.md">Read the engineering case study <span aria-hidden="true">&#8599;</span></a></div>
+      <p class="service-status">The original hosted beta is discontinued. This page showcases the implementation; it is not a live governance service.</p>
+    </section>
+    <section id="workflow" class="workflow" aria-labelledby="workflow-title">
+      <div class="wrap">
+        <div class="section-line"><h2 id="workflow-title">A proposal becomes an action story.</h2><span class="label">Verified local demo</span></div>
+        <figure>
+          <a href="/assets/demo-output.png" aria-label="View the full demo transcript"><img src="/assets/demo-output.png" width="1200" height="510" alt="Verified demo output: an allowed action executes locally, a pending action waits, approval permits execution, rejected and blocked actions do not run, and reused or invalid tokens are refused."></a>
+          <figcaption>Actual SDK and FastAPI logic. Synthetic invoice data, in-memory persistence, and a simulated executor. No email, payment, or external business action.</figcaption>
+        </figure>
+        <ol class="flow">
+          <li><span>01</span><h3>Propose</h3><p>The Python SDK submits a registered action and payload before execution.</p></li>
+          <li><span>02</span><h3>Govern</h3><p>A deterministic rule allows, blocks, or requests an expiring human decision.</p></li>
+          <li><span>03</span><h3>Execute locally</h3><p>The application's executor runs only when the API explicitly permits it.</p></li>
+          <li><span>04</span><h3>Report &amp; record</h3><p>Execution results and the governance receipt complete the action story.</p></li>
+        </ol>
+      </div>
+    </section>
+    <section id="engineering" class="engineering wrap" aria-labelledby="engineering-title">
+      <div class="section-line"><h2 id="engineering-title">Small boundary. Deliberate choices.</h2><span class="label">Implementation</span></div>
+      <dl class="decisions">
+        <div><dt>Deterministic runtime policy</dt><dd>Four explicit policy types. No LLM calls decide whether a runtime action may execute.</dd></div>
+        <div><dt>Governance and execution are separate</dt><dd>An approval authorizes execution; it does not claim success. Both states remain visible.</dd></div>
+        <div><dt>Explicit trust boundary</dt><dd>Hashed keys and expiring decision tokens protect access. Applications must cooperate with the gate.</dd></div>
+        <div><dt>Replay with payload identity</dt><dd>Workspace-scoped idempotency returns the existing run and refuses conflicting payloads.</dd></div>
+      </dl>
+      <div class="stack"><h3>Built with</h3><p>Python &middot; FastAPI &middot; PostgreSQL &middot; Supabase Auth &middot; Next.js &middot; Tailwind</p></div>
+      <p class="boundary">DAAI does not intercept arbitrary code or enforce an OS-level sandbox. External side effects and exactly-once execution remain the developer's responsibility. The full dashboard needs a separate Supabase setup; the isolated demo is the verified starting point.</p>
+    </section>
+    <section class="inspect" aria-labelledby="inspect-title"><div class="wrap">
+      <h2 id="inspect-title">Inspect the work.</h2>
+      <p>Source, schema migrations, regression tests, and a reproducible local walkthrough. MIT-licensed project source, with the original deployment history kept private.</p>
+      <div class="resource-links">
+        <a href="https://github.com/sanyAlam/daai-console-open-source">Console source <span aria-hidden="true">&#8599;</span></a>
+        <a href="https://github.com/sanyAlam/daai-console-open-source/blob/main/docs/local-setup.md">Run the local demo <span aria-hidden="true">&#8599;</span></a>
+        <a href="https://github.com/sanyAlam/daai-console-python">Companion Python SDK <span aria-hidden="true">&#8599;</span></a>
+        <a href="https://github.com/sanyAlam/daai-console-open-source/blob/main/LICENSE">MIT license <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div></section>
+  </main>
+  <footer class="wrap"><span>DAAI Console &middot; Sany Alam &middot; 2026</span><a href="https://github.com/sanyAlam">GitHub profile <span aria-hidden="true">&#8599;</span></a></footer>
+</body>
+</html>
